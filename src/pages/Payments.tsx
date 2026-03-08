@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 const emptyForm = { propertyId: '', tenantId: '', type: 'rent', amount: 0, dueDate: '', paidDate: '', notes: '' };
 
 export default function Payments() {
-  const { properties, tenants, payments, addPayment, updatePayment, deletePayment, markPaid, generateMonthlyRent } = useApp();
+  const { properties, tenants, payments, addPayment, updatePayment, deletePayment, markPaid } = useApp();
   const [searchParams] = useSearchParams();
   const now = new Date();
   const [selectedYear, setSelectedYear] = useState(now.getFullYear());
