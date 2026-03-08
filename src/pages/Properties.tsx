@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 const emptyForm = { address: '', unit: '', type: '', bedrooms: 0, bathrooms: 0, sqft: 0, purchasePrice: 0, monthlyMortgage: 0, photoUrl: '' };
 
 export default function Properties() {
-  const { properties, tenants, addProperty, updateProperty, archiveProperty } = useApp();
+  const { properties, tenants, addProperty, updateProperty, archiveProperty, unarchiveProperty } = useApp();
   const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [filterStatus, setFilterStatus] = useState('all');
@@ -164,6 +164,7 @@ export default function Properties() {
                   <button className="flex-1 py-2 text-xs font-medium text-primary hover:bg-muted/50 transition-colors" onClick={() => navigate(`/properties/${p.id}`)}>Details</button>
                   <button className="flex-1 py-2 text-xs font-medium hover:bg-muted/50 transition-colors border-l" onClick={() => setEditingProperty(p)}>Edit</button>
                   {p.status !== 'archived' && <button className="flex-1 py-2 text-xs font-medium text-destructive hover:bg-muted/50 transition-colors border-l" onClick={() => setConfirmArchive(p)}>Archive</button>}
+                  {p.status === 'archived' && <button className="flex-1 py-2 text-xs font-medium text-success hover:bg-muted/50 transition-colors border-l" onClick={() => unarchiveProperty(p.id)}>Unarchive</button>}
                 </div>
               </div>
             );
@@ -198,6 +199,7 @@ export default function Properties() {
                       <Button size="sm" variant="ghost" onClick={() => navigate(`/properties/${p.id}`)}>Details</Button>
                       <Button size="sm" variant="ghost" onClick={() => setEditingProperty(p)}>Edit</Button>
                       {p.status !== 'archived' && <Button size="sm" variant="ghost" className="text-destructive" onClick={() => setConfirmArchive(p)}>Archive</Button>}
+                      {p.status === 'archived' && <Button size="sm" variant="ghost" className="text-success" onClick={() => unarchiveProperty(p.id)}>Unarchive</Button>}
                     </td>
                   </tr>
                 );

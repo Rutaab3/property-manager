@@ -79,6 +79,7 @@ interface AppContextType {
   addProperty: (data: Omit<Property, 'id'>) => void;
   updateProperty: (id: string, data: Partial<Property>) => void;
   archiveProperty: (id: string) => void;
+  unarchiveProperty: (id: string) => void;
   addTenant: (data: Omit<Tenant, 'id'>) => void;
   updateTenant: (id: string, data: Partial<Tenant>) => void;
   archiveTenant: (id: string, depositReturned: boolean) => void;
@@ -155,6 +156,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     writeLS('rp_properties', updated);
     setProperties(updated);
     toast.success('Property archived');
+  }, []);
+
+  const unarchiveProperty = useCallback((id: string) => {
+    const current = readLS<Property>('rp_properties');
+    const updated = current.map(p => p.id === id ? { ...p, status: 'vacant' } : p);
+    writeLS('rp_properties', updated);
+    setProperties(updated);
+    toast.success('Property unarchived');
   }, []);
 
   // TENANTS
@@ -380,7 +389,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   return (
     <AppContext.Provider value={{
       properties, tenants, payments, maintenance, expenses,
-      addProperty, updateProperty, archiveProperty,
+      addProperty, updateProperty, archiveProperty, unarchiveProperty,
       addTenant, updateTenant, archiveTenant,
       addPayment, updatePayment, deletePayment, markPaid, generateMonthlyRent,
       addMaintenance, updateMaintenance, deleteMaintenance, updateMaintenanceStatus,
