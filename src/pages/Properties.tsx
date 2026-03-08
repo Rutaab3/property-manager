@@ -164,6 +164,7 @@ export default function Properties() {
                   <button className="flex-1 py-2 text-xs font-medium text-primary hover:bg-muted/50 transition-colors" onClick={() => navigate(`/properties/${p.id}`)}>Details</button>
                   <button className="flex-1 py-2 text-xs font-medium hover:bg-muted/50 transition-colors border-l" onClick={() => setEditingProperty(p)}>Edit</button>
                   {p.status !== 'archived' && <button className="flex-1 py-2 text-xs font-medium text-destructive hover:bg-muted/50 transition-colors border-l" onClick={() => setConfirmArchive(p)}>Archive</button>}
+                  {p.status === 'archived' && <button className="flex-1 py-2 text-xs font-medium text-success hover:bg-muted/50 transition-colors border-l" onClick={() => unarchiveProperty(p.id)}>Unarchive</button>}
                 </div>
               </div>
             );
