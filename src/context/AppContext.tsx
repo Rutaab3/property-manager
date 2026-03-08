@@ -238,36 +238,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     toast.success('Payment marked as paid');
   }, []);
 
-  const generateMonthlyRent = useCallback((year: number, month: number) => {
-    const currentTenants = readLS<Tenant>('rp_tenants').filter(t => t.status === 'active');
-    const currentPayments = readLS<Payment>('rp_payments');
-    const monthStr = `${year}-${String(month + 1).padStart(2, '0')}`;
-    let count = 0;
-
-    const newPayments = [...currentPayments];
-    for (const tenant of currentTenants) {
-      const exists = currentPayments.some(
-        p => p.tenantId === tenant.id && p.type === 'rent' && p.dueDate.startsWith(monthStr)
-      );
-      if (!exists) {
-        newPayments.push({
-          id: crypto.randomUUID(),
-          propertyId: tenant.propertyId,
-          tenantId: tenant.id,
-          amount: tenant.monthlyRent,
-          type: 'rent',
-          dueDate: `${monthStr}-01`,
-          paidDate: null,
-          status: 'pending',
-          notes: '',
-        });
-        count++;
-      }
-    }
-    writeLS('rp_payments', newPayments);
-    setPayments(newPayments);
-    toast.success(`${count} rent entries generated`);
-  }, []);
 
   // MAINTENANCE
   const addMaintenance = useCallback((data: Omit<MaintenanceRequest, 'id'>) => {
