@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 const emptyForm = { address: '', unit: '', type: '', bedrooms: 0, bathrooms: 0, sqft: 0, purchasePrice: 0, monthlyMortgage: 0, photoUrl: '' };
 
 export default function Properties() {
-  const { properties, tenants, addProperty, updateProperty, archiveProperty } = useApp();
+  const { properties, tenants, addProperty, updateProperty, archiveProperty, unarchiveProperty } = useApp();
   const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [filterStatus, setFilterStatus] = useState('all');
