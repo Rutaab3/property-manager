@@ -361,7 +361,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       properties, tenants, payments, maintenance, expenses,
       addProperty, updateProperty, archiveProperty, unarchiveProperty,
       addTenant, updateTenant, archiveTenant,
-      addPayment, updatePayment, deletePayment, markPaid, generateMonthlyRent,
+      addPayment, updatePayment, deletePayment, markPaid,
       addMaintenance, updateMaintenance, deleteMaintenance, updateMaintenanceStatus,
       addExpense, updateExpense, deleteExpense,
       clearAllData, exportData, importData,
