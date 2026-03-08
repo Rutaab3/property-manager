@@ -87,7 +87,7 @@ interface AppContextType {
   updatePayment: (id: string, data: Partial<Payment>) => void;
   deletePayment: (id: string) => void;
   markPaid: (id: string, paidDate: string, amount: number) => void;
-  generateMonthlyRent: (year: number, month: number) => void;
+  
   addMaintenance: (data: Omit<MaintenanceRequest, 'id'>) => void;
   updateMaintenance: (id: string, data: Partial<MaintenanceRequest>) => void;
   deleteMaintenance: (id: string) => void;
