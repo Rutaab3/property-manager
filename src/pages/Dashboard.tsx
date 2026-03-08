@@ -94,19 +94,15 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {[0, 1].map(frameIdx => (
-          <div key={frameIdx} className="bg-card rounded-xl shadow-sm border p-5 grid grid-cols-2 gap-4">
-            {kpiCards.slice(frameIdx * 2, frameIdx * 2 + 2).map((card, i) => (
-              <div key={i}>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm text-muted-foreground">{card.label}</span>
-                  {card.icon}
-                </div>
-                <div className="text-2xl font-bold">{card.value}</div>
-                <div className="text-xs text-muted-foreground mt-1">{card.sub}</div>
-              </div>
-            ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {kpiCards.map((card, i) => (
+          <div key={i} className="bg-card rounded-xl shadow-sm border p-5">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm text-muted-foreground">{card.label}</span>
+              {card.icon}
+            </div>
+            <div className="text-2xl font-bold">{card.value}</div>
+            <div className="text-xs text-muted-foreground mt-1">{card.sub}</div>
           </div>
         ))}
       </div>
