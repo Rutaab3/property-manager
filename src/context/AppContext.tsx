@@ -79,6 +79,7 @@ interface AppContextType {
   addProperty: (data: Omit<Property, 'id'>) => void;
   updateProperty: (id: string, data: Partial<Property>) => void;
   archiveProperty: (id: string) => void;
+  unarchiveProperty: (id: string) => void;
   addTenant: (data: Omit<Tenant, 'id'>) => void;
   updateTenant: (id: string, data: Partial<Tenant>) => void;
   archiveTenant: (id: string, depositReturned: boolean) => void;
