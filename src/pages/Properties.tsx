@@ -117,7 +117,7 @@ export default function Properties() {
         <Input type="file" accept="image/*" onChange={e => {
           const file = e.target.files?.[0];
           if (!file) return;
-          if (file.size > 2 * 1024 * 1024) { toast.error('Image must be under 2MB'); return; }
+          if (file.size > 20 * 1024) { toast.error('Image must be under 20KB'); return; }
           const reader = new FileReader();
           reader.onload = () => setForm(f => ({ ...f, photoUrl: reader.result as string }));
           reader.readAsDataURL(file);
