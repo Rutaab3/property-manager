@@ -176,10 +176,7 @@ export default function Payments() {
           <span className="text-lg font-semibold min-w-[180px] text-center">{monthLabel}</span>
           <Button variant="outline" size="icon" onClick={handleNext}><ChevronRight className="h-4 w-4" /></Button>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={() => generateMonthlyRent(selectedYear, selectedMonth)}><Zap className="h-4 w-4 mr-1" /> Auto-Generate</Button>
-          <Button onClick={() => { setForm(emptyForm); setIsAddOpen(true); }}><Plus className="h-4 w-4 mr-1" /> Log Payment</Button>
-        </div>
+        <Button onClick={() => { setForm(emptyForm); setIsAddOpen(true); }}><Plus className="h-4 w-4 mr-1" /> Log Payment</Button>
       </div>
 
       {/* Filter bar */}
