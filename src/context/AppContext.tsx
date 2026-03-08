@@ -158,6 +158,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     toast.success('Property archived');
   }, []);
 
+  const unarchiveProperty = useCallback((id: string) => {
+    const current = readLS<Property>('rp_properties');
+    const updated = current.map(p => p.id === id ? { ...p, status: 'vacant' } : p);
+    writeLS('rp_properties', updated);
+    setProperties(updated);
+    toast.success('Property unarchived');
+  }, []);
+
   // TENANTS
   const addTenant = useCallback((data: Omit<Tenant, 'id'>) => {
     const current = readLS<Tenant>('rp_tenants');
