@@ -199,6 +199,7 @@ export default function Properties() {
                       <Button size="sm" variant="ghost" onClick={() => navigate(`/properties/${p.id}`)}>Details</Button>
                       <Button size="sm" variant="ghost" onClick={() => setEditingProperty(p)}>Edit</Button>
                       {p.status !== 'archived' && <Button size="sm" variant="ghost" className="text-destructive" onClick={() => setConfirmArchive(p)}>Archive</Button>}
+                      {p.status === 'archived' && <Button size="sm" variant="ghost" className="text-success" onClick={() => unarchiveProperty(p.id)}>Unarchive</Button>}
                     </td>
                   </tr>
                 );
