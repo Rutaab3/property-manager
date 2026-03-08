@@ -9,14 +9,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ChevronLeft, ChevronRight, Plus, Zap, Check, Pencil, Trash2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus, Check, Pencil, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
 const emptyForm = { propertyId: '', tenantId: '', type: 'rent', amount: 0, dueDate: '', paidDate: '', notes: '' };
 
 export default function Payments() {
-  const { properties, tenants, payments, addPayment, updatePayment, deletePayment, markPaid, generateMonthlyRent } = useApp();
+  const { properties, tenants, payments, addPayment, updatePayment, deletePayment, markPaid } = useApp();
   const [searchParams] = useSearchParams();
   const now = new Date();
   const [selectedYear, setSelectedYear] = useState(now.getFullYear());
@@ -176,10 +176,7 @@ export default function Payments() {
           <span className="text-lg font-semibold min-w-[180px] text-center">{monthLabel}</span>
           <Button variant="outline" size="icon" onClick={handleNext}><ChevronRight className="h-4 w-4" /></Button>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={() => generateMonthlyRent(selectedYear, selectedMonth)}><Zap className="h-4 w-4 mr-1" /> Auto-Generate</Button>
-          <Button onClick={() => { setForm(emptyForm); setIsAddOpen(true); }}><Plus className="h-4 w-4 mr-1" /> Log Payment</Button>
-        </div>
+        <Button onClick={() => { setForm(emptyForm); setIsAddOpen(true); }}><Plus className="h-4 w-4 mr-1" /> Log Payment</Button>
       </div>
 
       {/* Filter bar */}
