@@ -212,7 +212,23 @@ export default function PropertyDetail() {
             <div><label className="text-sm font-medium">Purchase Price</label><Input type="number" value={form.purchasePrice} onChange={e => setForm({ ...form, purchasePrice: +e.target.value })} /></div>
             <div><label className="text-sm font-medium">Monthly Mortgage</label><Input type="number" value={form.monthlyMortgage} onChange={e => setForm({ ...form, monthlyMortgage: +e.target.value })} /></div>
           </div>
-          <div><label className="text-sm font-medium">Photo URL</label><Input value={form.photoUrl} onChange={e => setForm({ ...form, photoUrl: e.target.value })} /></div>
+          <div>
+            <label className="text-sm font-medium">Photo</label>
+            {form.photoUrl && (
+              <div className="relative mb-2">
+                <img src={form.photoUrl} alt="Preview" className="w-full h-32 object-cover rounded-lg" />
+                <button type="button" onClick={() => setForm({ ...form, photoUrl: '' })} className="absolute top-1 right-1 bg-black/50 text-white rounded-full h-5 w-5 flex items-center justify-center text-xs hover:bg-black/70">×</button>
+              </div>
+            )}
+            <Input type="file" accept="image/*" onChange={e => {
+              const file = e.target.files?.[0];
+              if (!file) return;
+              if (file.size > 2 * 1024 * 1024) { toast.error('Image must be under 2MB'); return; }
+              const reader = new FileReader();
+              reader.onload = () => setForm(f => ({ ...f, photoUrl: reader.result as string }));
+              reader.readAsDataURL(file);
+            }} />
+          </div>
         </div>
       </SlideOverPanel>
     </div>
