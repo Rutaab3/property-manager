@@ -389,7 +389,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   return (
     <AppContext.Provider value={{
       properties, tenants, payments, maintenance, expenses,
-      addProperty, updateProperty, archiveProperty,
+      addProperty, updateProperty, archiveProperty, unarchiveProperty,
       addTenant, updateTenant, archiveTenant,
       addPayment, updatePayment, deletePayment, markPaid, generateMonthlyRent,
       addMaintenance, updateMaintenance, deleteMaintenance, updateMaintenanceStatus,
